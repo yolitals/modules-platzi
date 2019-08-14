@@ -22,4 +22,14 @@ resource "aws_instance" "platzi-instance"{
     instance_type = var.instance_type
     tags = var.tags
     security_groups = ["${aws_security_group.ssh_conection.name}"]
+    connection {
+      type     = "ssh"
+      user     = "centos"
+      private_key = "~/.ssh/packer-key"
+    }
+    provisioner "remote-exec" {
+      inline = [
+        "docker ps"
+      ]
+    }
 }
