@@ -29,7 +29,7 @@ resource "aws_instance" "platzi-instance"{
     }
     provisioner "remote-exec" {
       inline = [
-        "docker ps"
+        "docker run -it -p 80:80 yolix/hello-platzi:v1"
       ]
     }
 }
